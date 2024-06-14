@@ -1,0 +1,78 @@
+import pymysql
+def main():
+    miConexion = pymysql.connect(host="localhost", user="root", passwd="+++", db="pruebas")
+    cur = miConexion.cursor()
+    try:
+        cliente = input("Ingrese el nombre de cliente: ")
+        apellido = input("Ingrese el apellido de cliente: ")
+        telefono = input("Ingrese el telefono de cliente: ")
+
+        # llevar datos del cliente a la base de datos
+        consulta_cliente = "INSERT INTO cliente(Nombre, Telefono, Apellido) VALUES (%s, %s, %s)"
+        cur.execute(consulta_cliente, (cliente, telefono, apellido))
+        miConexion.commit()
+        print("Cliente agregado exitosamente.")
+
+        #ultimo idCliente 
+        cur.execute("SELECT LAST_INSERT_ID();")
+        idCliente = cur.fetchone()[0]
+        servicios = []
+        while True:
+            print("\nMenú de opciones:")
+            print("Lavado (1)")
+            print("Tinturas (2)")
+            print("Mechas (3)")
+            print("Permanente (4)")
+            print("Baño crema (5)")
+            print("Brushing (6)")
+            print("Peinado (7)")
+            print("Fin (8)")
+
+            opcion = input("Por favor, elige los servicios a realizar: ")
+            if opcion in ["1", "2", "3", "4", "5", "6", "7"]:
+                lavado = tinturas = mechas = permanente = bañoCrema = Brushing = peinado = 0
+                if opcion == "1":
+                    lavado = 1
+                elif opcion == "2":
+                    tinturas = 1
+                elif opcion == "3":
+                    mechas = 1
+                elif opcion == "4":
+                    permanente = 1
+                elif opcion == "5":
+                    bañoCrema = 1
+                elif opcion == "6":
+                    Brushing = 1
+                elif opcion == "7":
+                    peinado = 1
+                
+                
+                # Servicio seleccionado por el cliente
+                consulta_servicio = "INSERT INTO servicio(idCliente, lavado, tinturas, mechas, permanente, bañoCrema, Brushing, peinado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+                cur.execute(consulta_servicio, (idCliente, lavado, tinturas, mechas, permanente, bañoCrema, Brushing, peinado))
+                miConexion.commit()
+                print("Servicio agregado")
+
+            elif opcion == '8':
+                print(f"Los servicios seleccionados son:", servicios)
+                confirmacion = input("Ingresa '1' para Confirmar o '2' para reiniciar la orden: ")
+                if confirmacion == '1':
+                    print("Guardando...")
+                    break
+                elif confirmacion == '2':
+                    print("Reiniciando orden")
+                    servicios.clear()
+                else:
+                    print("Opción no válida. Inténtalo de nuevo.")
+            else:
+                print("Opción no válida. Inténtalo de nuevo.")
+
+    except pymysql.MySQLError as e:
+        print("Ocurrió un error al conectar con la base de datos:", e)
+    finally:
+        if miConexion:
+            cur.close()
+            miConexion.close()
+
+if __name__ == "__main__":
+    main()
