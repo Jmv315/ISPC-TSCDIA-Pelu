@@ -1,0 +1,58 @@
+cliente = str(input("Ingrese el nombre de cliente:"))
+apellido = str (input("Ingrese el apellido del cliente:"))
+print(cliente,apellido)
+
+def main():
+    servicios=[]
+    while True:
+        print("\nMenú de opciones:")
+        print("Lavado (1)")
+        print("Tinturas (2)")
+        print("Mechas (3)")
+        print("Permanente (4)")
+        print("Baño crema (5)")
+        print("Brushing (6)")
+        print("Peinado (7)")
+        print("Fin (8)")
+
+        opcion = input("Por favor, elige los servicios a realizar: ")
+        if opcion == '1':
+            print("Has elegido Lavado.")
+            opcionS="Lavado" 
+        elif opcion == '2':
+            print("Has elegido Tintura.")
+            opcionS="Tintura"
+        elif opcion == '3':
+            print("Has elegido Mechas.")
+            opcionS="Mechas"
+        elif opcion == '4':
+            print("Has elegido Permanente.")
+            opcionS="Permanente"
+        elif opcion == '5':
+            print("Has elegido Baño Crema.")
+            opcionS="Baño Crema"
+        elif opcion == "6":
+            print("Has elegido Brushing.")
+            opcionS="Brushing"          
+        elif opcion == "7":
+            print("Has elegido Peinado.")
+            opcionS="Peinado"            
+        elif opcion == "8":
+            print("Los servicios seleccionados son:", servicios)
+            print("Ingresa '1' para Confirmar o '2' para reiniciar la orden.")
+            confirmacion = input()
+            if confirmacion == '1':
+                print("Saliendo del programa...")
+                break
+            elif confirmacion == '2':
+                print("Reiniciando orden...")
+                servicios.clear()
+            else:
+                print("Opción no válida. Inténtalo de nuevo.")
+        else:
+            print("Opción no válida. Inténtalo de nuevo.")
+            continue
+
+        servicios.append(opcionS)
+if __name__ == "__main__":
+    main()
