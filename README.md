@@ -16,6 +16,8 @@ carpeta programacion hasta la fecha(15/06)
 "innerJoin.py" un programa exclusivo para ver los productos usados en cada servicio
 "main.py" la aplicacion
 
-carpeta BD hasta la fecha (14/06)
+carpeta BD hasta la fecha (15/06)
 "DER chen" un diagrama DER Chen diseñado en https://app.diagrams.net/ ####aclarar que lo tengo que actualizar 
 "DER Crowsfoot" un diagrama DER Crowsfoot diseñado en la aplicacion "MySQL Workbench"
+"DER Chen-v2" actualizacion del archivo "DER chen" diseñado en https://miro.com/app/dashboard/
+"DER Crowsfoot-v2" actualizacion del archivo "DER Crowsfoot" 
