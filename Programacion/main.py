@@ -1,11 +1,9 @@
 import pymysql
 miConexion = pymysql.connect(host='localhost', user='root', password='---', db='peluqueria')
 cur = miConexion.cursor()
-from datetime import date
-fecha= date.today()
-dni=str(input("ingrese el dni del cliente: "))
-consulta_cliente = "INSERT INTO registro(dni, fecha) VALUES (%s, %s)" ##ingresa el dni para "loguearse"
-cur.execute(consulta_cliente, (dni, fecha))
+dni=int(input("ingrese el dni del cliente: "))
+consulta_cliente = "INSERT INTO registro(dni) VALUES (%s)" ##ingresa el dni para "loguearse"
+cur.execute(consulta_cliente, (dni))
 try:
     with miConexion.cursor() as cursor:
      sql = "SELECT idCliente FROM cliente WHERE dni = %s"
@@ -96,11 +94,11 @@ try:
             if __name__ == "__main__":
                   main()         
     else:#register 
-            print("No se encontró el dato.")
+            print("No se encontró el cliente :(")
             cliente = (input("Ingrese el nombre de cliente:"))
             apellido = (input("Ingrese el apellido del cliente:"))
             telefono = input("Ingrese el telefono de cliente: ")
-            dni=input("ingrese el dni del cliente")
+            dni=input("ingrese el dni del cliente: ")
             consulta_cliente = "INSERT INTO cliente(Nombre, Telefono, Apellido, dni) VALUES (%s, %s, %s, %s)"
             cur.execute(consulta_cliente, (cliente, telefono, apellido, dni))
             miConexion.commit()
