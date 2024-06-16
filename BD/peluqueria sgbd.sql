@@ -1,14 +1,9 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE SCHEMA IF NOT EXISTS `pelu` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `peluqueria` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
--- Schema peluqueria
--- -----------------------------------------------------
-USE `peluqueria` ;
-
--- -----------------------------------------------------
--- crea la tabla Cliente en el sev peluqueria 
+-- crea la tabla Cliente en el sev pelu 
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `peluqueria`.`cliente` (
   `idCliente` INT NOT NULL AUTO_INCREMENT, 
@@ -48,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `peluqueria`.`servicio` (
   INDEX `idCliente_idx` (`idCliente` ASC) VISIBLE,
   CONSTRAINT `idCliente`
     FOREIGN KEY (`idCliente`)
-    REFERENCES `pelu`.`cliente` (`idCliente`)
+    REFERENCES `peluqueria`.`cliente` (`idCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
