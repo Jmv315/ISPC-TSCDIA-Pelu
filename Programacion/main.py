@@ -2,8 +2,6 @@ import pymysql
 miConexion = pymysql.connect(host='localhost', user='root', password='---', db='peluqueria')
 cur = miConexion.cursor()
 dni=int(input("ingrese el dni del cliente: "))
-consulta_cliente = "INSERT INTO registro(dni) VALUES (%s)" ##ingresa el dni para "loguearse"
-cur.execute(consulta_cliente, (dni))
 try:
     with miConexion.cursor() as cursor:
      sql = "SELECT idCliente FROM cliente WHERE dni = %s"
