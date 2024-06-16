@@ -1,29 +1,24 @@
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE SCHEMA IF NOT EXISTS `peluqueria` DEFAULT CHARACTER SET utf8 ;
+
+CREATE SCHEMA IF NOT EXISTS `peluqueria` DEFAULT CHARACTER SET utf8mb3 ;
+USE `peluqueria` ;
+
 -- -----------------------------------------------------
--- crea la tabla Cliente en el sev pelu 
+-- Table `peluqueria`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `peluqueria`.`cliente` (
-  `idCliente` INT NOT NULL AUTO_INCREMENT, 
-  -- creo que el "id Cliente con las propiedades: INT, NN, AI"
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `telefono` VARCHAR(45) NOT NULL,
   `dni` INT NOT NULL,
   PRIMARY KEY (`idCliente`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- crea la tabla Registro en el serv peluqueria
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `peluqueria`.`registro` (
-  `idregistro` INT NOT NULL AUTO_INCREMENT,
-  `dni` INT NOT NULL,
-  PRIMARY KEY (`idregistro`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -43,10 +38,9 @@ CREATE TABLE IF NOT EXISTS `peluqueria`.`servicio` (
   INDEX `idCliente_idx` (`idCliente` ASC) VISIBLE,
   CONSTRAINT `idCliente`
     FOREIGN KEY (`idCliente`)
-    REFERENCES `peluqueria`.`cliente` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `peluqueria`.`cliente` (`idCliente`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -69,10 +63,9 @@ CREATE TABLE IF NOT EXISTS `peluqueria`.`productos` (
   INDEX `idServicio_idx` (`idServicio` ASC) VISIBLE,
   CONSTRAINT `idServicio`
     FOREIGN KEY (`idServicio`)
-    REFERENCES `peluqueria`.`servicio` (`idServicio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `peluqueria`.`servicio` (`idServicio`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
